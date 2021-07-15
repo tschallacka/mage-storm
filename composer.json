@@ -9,7 +9,10 @@
       "email": "tschallacka@outlook.com"
     }
   ],
+  "psr-4": {
+      "Tschallacka\\MageStorm": "src/Tschallacka/MageStorm"
+  },
   "require": {
     "tschallacka/storm-database": "1.1"
   }
-}
+},
