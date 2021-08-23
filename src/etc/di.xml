@@ -7,6 +7,9 @@
                 <item name="tschallacka_magestorm_create_model" xsi:type="object">
                     Tschallacka\MageStorm\Console\Command\CreateModel
                 </item>
+                <item name="tschallacka_magestorm_test_model" xsi:type="object">
+                    Tschallacka\MageStorm\Console\Command\TestModel
+                </item>
             </argument>
         </arguments>
     </type>
