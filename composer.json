@@ -2,16 +2,21 @@
   "name": "tschallacka/mage-storm",
   "description": "Adds the storm database library to magento for eloquent databases in magento 2",
   "minimum-stability": "stable",
-  "version": "1.0.0",
   "license": "MIT",
+  "type": "magento2-module",
   "authors": [
     {
       "name": "tschallacka",
       "email": "tschallacka@outlook.com"
     }
   ],
-  "psr-4": {
-      "Tschallacka\\MageStorm": "src/Tschallacka/MageStorm"
+  "autoload": {
+    "files": [
+      "src/registration.php"
+    ],
+    "psr-4": {
+      "Tschallacka\\MageStorm\\": "src/"
+    }
   },
   "require": {
     "tschallacka/storm-database": "^1.0"
