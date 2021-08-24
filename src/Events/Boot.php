@@ -12,7 +12,6 @@ class Boot implements ObserverInterface
 
     public function __construct(Manager $manager, Magento\Framework\App\ResourceConnection $resource)
     {
-        xdebug_break();
         $this->manager = $manager;
         $this->resource = $resource;
     }
@@ -21,7 +20,6 @@ class Boot implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        xdebug_break();
         $this->manager->addConnection($this->resource->getConnection());
         $this->manager->bootEloquent();
     }
