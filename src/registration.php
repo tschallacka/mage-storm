@@ -19,4 +19,8 @@ foreach($env['db']['connection'] as $name => $config) {
     $config['collation'] = 'utf8_unicode_ci';
     $manager->addConnection($config, $name);
 }
+foreach($env['magestorm']['connections'] as $name => $config)
+{
+    $manager->addConnection($config, $name);
+}
 $manager->bootEloquent();

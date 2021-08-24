@@ -12,6 +12,10 @@ Coming from a Laravel/OctoberCMS/WinterCMS background, this is not fun to code a
 Hence this library, which will aim to imitate the base Magento models but make them fluent.
 With Collections, easy relations, QueryBuilders etc...
 
+For documentation on how to make queries, queries on relations etc... I'd like to refer you to the
+[WinterCms documentation](https://wintercms.com/docs/database/basics) Only the database parts of the doucmentation 
+are relevant, the CMS parts etc... are excluded from this library to keep the size small.
+
 ### Very minimal
 
 I've striven to keep this library as minimal as possible, by only including the most 
@@ -42,5 +46,64 @@ In your Magento project dir run the following command from your shell
 composer require tschallacka/mage-storm
 ```
 
+### Configuration
+
+Default connections will be gleaned from app/etc/env.php and added to the eloquent connection manager
+under the names as they are defined there.
+
+If you wish to use other databases like postgres, sqlite, etc... define them under `['magestorm']['connections']`
+in env.php like WinterCms requires it. See for the [WinterCms documentation](https://wintercms.com/docs/database/basics) on the configuration values that are accepted. 
+Do note that the connections you define under `['magestorm']` cannot be used by Magento, only by MageStorm/Storm Models.
+
+example:
+
+```php
+return [
+    'backend' => ....
+    ...
+    'db' => [
+        'table_prefix' => '',
+        'connection' => [
+            'default' => [
+                'host' => 'localhost',
+                'dbname' => 'magento',
+                'username' => 'magento',
+                'password' => 'magento-dev-password',
+                'model' => 'mysql4',
+                'engine' => 'innodb',
+                'initStatements' => 'SET NAMES utf8;',
+                'active' => '1',
+                'driver_options' => [
+                    1014 => false
+                ]
+            ]
+        ]
+    ],
+    'magestorm' => [
+        'connections' => [
+            'other_connection_name' => [
+                'read' => [
+                    'host' => '192.168.1.1',
+                ],
+                'write' => [
+                    'host' => '196.168.1.2'
+                ],
+                'driver'    => 'mysql',
+                'database'  => 'database',
+                'username'  => 'root',
+                'password'  => '',
+                'charset'   => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix'    => '',
+            ],
+            'sqlite_testing' => [
+                'driver' => 'sqlite',
+                'database' => 'patho/to/testing-db.sqlite',
+                'prefix' => '',
+            ],
+        ]
+    ],
+    ....
+```
 
 

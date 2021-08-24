@@ -33,7 +33,5 @@ class TestModel extends BaseCommand
         $model = new BaseModel(['name'=>'foobar']);
         $model->save();
         $new = BaseModel::find($model->getKey());
-        xdebug_break();
-
     }
 }
