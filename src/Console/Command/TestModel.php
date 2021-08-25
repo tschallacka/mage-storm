@@ -1,5 +1,5 @@
 <?php
-
+/** Do not use this file. This will get removed in the future, it is just for quick and dirty testing **/
 namespace Tschallacka\MageStorm\Console\Command;
 
 use Symfony\Component\Console\Command\Command as BaseCommand;
@@ -7,7 +7,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Tschallacka\Test\Models\BaseModel;
 use Winter\Storm\Support\Str;
-
+/**
+ * @Deprecated
+ */
 class TestModel extends BaseCommand
 {
     /**
