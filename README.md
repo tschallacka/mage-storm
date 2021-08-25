@@ -118,3 +118,7 @@ Creates a new default blank Model file at `path/to/magento/app/code/Module/Name/
 The Path argument is optional. When omitted it will place the files in the Models directory within your module.
 
 Refer to [WinterCms documentation](https://wintercms.com/docs/database/basics) and all the other articles there under Database on how to work with the models if you are not familiar with Laravel / OctoberCms / WinterCMS.
+
+### Table creation
+
+For table creation, instead of using migrations like Laravel / OctoberCMS / WinterCMS uses I recommend to use the [Declarative Schema of Magento](https://devdocs.magento.com/guides/v2.4/extension-dev-guide/declarative-schema/db-schema.html). When using something else than a Magento Database you'll need to work your way around that by using migrations or other methods to update your database schemas.
