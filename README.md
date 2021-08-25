@@ -106,4 +106,15 @@ return [
     ....
 ```
 
+## Usage
 
+### Commands
+
+```bash
+bin/magento storm:create:model [Module_Name] [ModelName] [Path(Default: "Models")]
+```
+
+Creates a new default blank Model file at `path/to/magento/app/code/Module/Name/Path/ModelName.php` with as database name a snake_case version of ModelName
+The Path argument is optional. When omitted it will place the files in the Models directory within your module.
+
+Refer to [WinterCms documentation](https://wintercms.com/docs/database/basics) and all the other articles there under Database on how to work with the models if you are not familiar with Laravel / OctoberCms / WinterCMS.
