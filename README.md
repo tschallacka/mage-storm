@@ -47,7 +47,7 @@ To get your symfony version for adding into the require statement use
 ### Summoning the storm
 In your Magento project dir run the following command from your shell
 ```bash
-composer require tschallacka/mage-storm
+composer require tschallacka/mage-storm ^1.0
 ```
 
 ### Configuration
