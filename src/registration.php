@@ -3,25 +3,34 @@
     \Magento\Framework\Component\ComponentRegistrar::MODULE, 'Tschallacka_MageStorm',
     __DIR__
 );
-
-$env = require(MAGENTO_BP . '/app/etc/env.php');
-$manager = new \Winter\Storm\Database\Capsule\Manager();
-foreach($env['db']['connection'] as $name => $config) {
-    if(!array_key_exists('driver', $config))
-    $config['driver'] = 'mysql';
-    if(!array_key_exists('prefix', $config))
-    $config['prefix'] = $env['db']['table_prefix'];
-    if(!array_key_exists('database', $config))
-    $config['database'] = $config['dbname'];
-    if(!array_key_exists('charset', $config))
-    $config['charset'] = 'utf8';
-    if(!array_key_exists('collation', $config))
-    $config['collation'] = 'utf8_unicode_ci';
-    $manager->addConnection($config, $name);
-}
-if(array_key_exists('magestorm', $env) && array_key_exists('connections',$env['magestorm'])) {
-    foreach ($env['magestorm']['connections'] as $name => $config) {
-        $manager->addConnection($config, $name);
+/**
+ * This is the earliest we can boot this up.
+ * We read the magento config and use it to make the default connections
+ */
+if(!defined('PHPUNIT_COMPOSER_INSTALL')) {
+    $env = require(MAGENTO_BP . '/app/etc/env.php');
+    $manager = new \Winter\Storm\Database\Capsule\Manager();
+    foreach ($env['db']['connection'] as $name => $config) {
+        if (is_null($manager->getConnection($name))) {
+            if (!array_key_exists('driver', $config))
+                $config['driver'] = 'mysql';
+            if (!array_key_exists('prefix', $config))
+                $config['prefix'] = $env['db']['table_prefix'];
+            if (!array_key_exists('database', $config))
+                $config['database'] = $config['dbname'];
+            if (!array_key_exists('charset', $config))
+                $config['charset'] = 'utf8';
+            if (!array_key_exists('collation', $config))
+                $config['collation'] = 'utf8_unicode_ci';
+            $manager->addConnection($config, $name);
+        }
     }
+    if (array_key_exists('magestorm', $env) && array_key_exists('connections', $env['magestorm'])) {
+        foreach ($env['magestorm']['connections'] as $name => $config) {
+            if (is_null($manager->getConnection($name))) {
+                $manager->addConnection($config, $name);
+            }
+        }
+    }
+    $manager->bootEloquent();
 }
-$manager->bootEloquent();
