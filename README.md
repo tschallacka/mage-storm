@@ -36,6 +36,10 @@ In your Magento project dir composer.json add this line in the `"require"` segme
 > When using an alias a specific version is needed, feel free to update to a more
 > Recent version when applicable.
 
+To get your symfony version for adding into the require statement use 
+
+`composer show symfony/console | grep versions`
+
 *For Magento 2.4.2-p1*
 ```json
 "symfony/console": "4.4.29 as 5.1.4",
@@ -43,7 +47,7 @@ In your Magento project dir composer.json add this line in the `"require"` segme
 ### Summoning the storm
 In your Magento project dir run the following command from your shell
 ```bash
-composer require tschallacka/mage-storm
+composer require tschallacka/mage-storm ^1.0
 ```
 
 ### Configuration
