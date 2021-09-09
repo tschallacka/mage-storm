@@ -12,7 +12,7 @@
   ],
   "autoload": {
     "files": [
-      "src/registration.php",
+      "src/registration.php"
     ],
     "psr-4": {
       "Tschallacka\\MageStorm\\": "src/"
