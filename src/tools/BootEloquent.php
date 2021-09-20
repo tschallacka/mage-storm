@@ -1,5 +1,7 @@
 <?php namespace Tschallacka\MageStorm\tools;
 
+use Winter\Storm\Foundation\Application;
+
 class BootEloquent
 {
     function bootOnce()
@@ -38,6 +40,32 @@ class BootEloquent
             }
         }
         $manager->bootEloquent();
+        $app = new Application(
+            realpath(BP)
+        );
+
+        foreach([
+                    /*
+                     * Laravel providers
+                     */
+                    \Illuminate\Bus\BusServiceProvider::class,
+                    \Illuminate\Cache\CacheServiceProvider::class,
+                    \Illuminate\Encryption\EncryptionServiceProvider::class,
+                    \Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+                    \Illuminate\Hashing\HashServiceProvider::class,
+                    \Illuminate\Pipeline\PipelineServiceProvider::class,
+
+                    /*
+                     * Winter Storm providers
+                     */
+                    \Winter\Storm\Database\DatabaseServiceProvider::class,
+                    \Winter\Storm\Filesystem\FilesystemServiceProvider::class,
+                    \Winter\Storm\Argon\ArgonServiceProvider::class,
+                    \Winter\Storm\Redis\RedisServiceProvider::class,
+                    \Winter\Storm\Validation\ValidationServiceProvider::class,
+                ] as $provider) {
+            $app->register($provider);
+        }
     }
 
 }
