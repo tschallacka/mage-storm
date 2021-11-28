@@ -63,6 +63,7 @@ class BootEloquent
                     \Winter\Storm\Argon\ArgonServiceProvider::class,
                     \Winter\Storm\Redis\RedisServiceProvider::class,
                     \Winter\Storm\Validation\ValidationServiceProvider::class,
+                    \Winter\Storm\Events\EventServiceProvider::class
                 ] as $provider) {
             $app->register($provider);
         }
