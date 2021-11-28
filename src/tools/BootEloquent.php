@@ -1,6 +1,7 @@
 <?php namespace Tschallacka\MageStorm\tools;
 
 use Winter\Storm\Foundation\Application;
+use function Tschallacka\MageStorm\Helper\getPathToMagentoRoot;
 
 class BootEloquent
 {
@@ -41,7 +42,7 @@ class BootEloquent
         }
         $manager->bootEloquent();
         $app = new Application(
-            realpath(BP)
+            realpath(getPathToMagentoRoot())
         );
 
         foreach([
