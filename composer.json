@@ -13,8 +13,7 @@
   ],
   "autoload": {
     "files": [
-      "src/registration.php",
-      "src/helper/path_to_magento_root.php"
+      "src/registration.php"
     ],
     "psr-4": {
       "Tschallacka\\MageStorm\\": "src/"

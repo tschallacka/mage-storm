@@ -7,7 +7,7 @@ class FindMagentoRoot
      * @return string
      * @throws Exception
      */
-    function getPathToMagentoRoot()
+    public function getPathToMagentoRoot()
     {
         $env_root = getenv('MAGENTO_ROOT');
         if ($env_root !== false) {

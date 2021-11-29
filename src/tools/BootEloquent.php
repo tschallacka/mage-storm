@@ -1,7 +1,8 @@
 <?php namespace Tschallacka\MageStorm\tools;
 
+use Winter\Storm\Database\Capsule\Manager;
 use Winter\Storm\Foundation\Application;
-use function Tschallacka\MageStorm\Helper\getPathToMagentoRoot;
+use Tschallacka\MageStorm\tools\MagentoRoot;
 
 class BootEloquent
 {
@@ -17,9 +18,10 @@ class BootEloquent
          * We read the magento config and use it to make the default connections
          */
         $finder = new FindMagentoRoot();
-        $path_to_env = $finder->getPathToMagentoRoot() . '/app/etc/env.php';
+        $magento_root = $finder->getPathToMagentoRoot();
+        $path_to_env = $magento_root . '/app/etc/env.php';
         $env = require($path_to_env);
-        $manager = new \Winter\Storm\Database\Capsule\Manager();
+        $manager = new Manager();
 
         foreach ($env['db']['connection'] as $name => $config) {
             if (!array_key_exists('driver', $config))
@@ -42,7 +44,7 @@ class BootEloquent
         }
         $manager->bootEloquent();
         $app = new Application(
-            realpath(getPathToMagentoRoot())
+            realpath($magento_root)
         );
 
         foreach([
